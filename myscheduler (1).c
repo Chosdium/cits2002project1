@@ -73,8 +73,6 @@ struct running{
 }
 
 
-int read_queue[MAX_RUNNING_PROCESSES];
-
 int read_num(char line[], int *line_i) {
     bool found = false;
     int num_i = 0;
@@ -149,6 +147,13 @@ int read_sysconfig(char filename[])
     return TQ;
 }
 
+int process_change(int clock, char *statechange){
+    if (){
+        
+    }
+    return (clock+5); 
+}
+
 void read_commands(char filename[])
 {
     FILE *file = fopen(filename, "r");
@@ -198,15 +203,38 @@ void read_commands(char filename[])
 void execute_commands(void)
 {
 // Simulate passage of time, with max of 2000 seconds
-    //
-    int pid = 0;
-    strcpy(READYqueue[index][0], commands[index]->name);
-    for (size_t i = 0; i<2000000000; i++){
-        
+    
+    strcpy(ready[0], commands[index]->name);
+    int i = 0;
+    while(true){
+        if (i == 0){
+            printf("%08d Rebooting\n", i);
+            printf("%08d spawn %s, pid%d\n", i, commands[0].name, 0);
+            //  first process
+            strcpy(ready.pro_name, commands[0].name);
+            ready[0].pid = 0;
+            strcpy(ready[0].syscal[0], commands[0]syscals[0]->name);
+            running = ready[0];
+        }
+
+        //
+        else if {
+            printf("%08d", i);
+            printf("\n");
+        }
+
+        //else{
+        //}
+
     }
 }
 
 
+void shift(void){
+    for (size_t i = 0; i <MAX_COMMANDS; i++){
+        ready[i] = ready[i+1];
+    }
+}
 
 int main(int argc, char *argv[])
 {
