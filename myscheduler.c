@@ -162,7 +162,14 @@ void read_commands(char filename[])
             else if (syscall_name == "spawn") {
                 char command_name[MAX_COMMAND_NAME];
                 read_word(line, &line_i, command_name);
-                
+                strcpy(commands[command_i].syscalls->arg1, command_name);
+            }
+            else if (syscall_name == "read" || syscall_name == "write") {
+                char device_name[MAX_DEVICE_NAME];
+                read_word(line, &line_i, device_name);
+                strcpy(commands[command_i].syscalls->arg1, device_name);
+                int size = read_num(line, &line_i);
+                commands[command_i].syscalls->arg2 = size;
             }
             printf("%d %s", commands[command_i].syscalls->time, commands[command_i].syscalls->name);
         }
